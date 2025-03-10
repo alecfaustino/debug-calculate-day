@@ -11,8 +11,9 @@ function calculateDayInYear(date) {
     return month && month >= 1 && month <= 12;
   }
 
+  //check leapYear
   const isLeapYear = function(year) {
-    return ((isMultiple(year, 4) && !isMultiple(year, 100))) || (isMultiple(year, 400));
+    return (isMultiple(year, 4) && !isMultiple(year, 100)) || isMultiple(year, 400);
   }
   
   const daysInFeb = function(year) {
@@ -26,15 +27,12 @@ function calculateDayInYear(date) {
   const validDay = function(month, day) {
     return day && day >= 1 && day <= DAYS_IN_MONTH[month - 1]; // month - 1 because 0 indexed array. 
   }
-
-  
   
   const calculateDayNumber = function(month, day) {
-    // should automatically count the days we 
+    // should automatically count the days we input 
     let dayOfYear = day;
-    
     // looping through 
-    //January is DAYS_IN_MONTH[0]
+    // January is DAYS_IN_MONTH[0]
     for (let i = 1; i < month; i++) {
       dayOfYear += DAYS_IN_MONTH[i - 1];
     }
@@ -43,10 +41,10 @@ function calculateDayInYear(date) {
   }
 
   if (year && validMonth(month) && validDay(month, day)) {
-    // console.log(date, "is day", calculateDayNumber(month, day), "of the year", year);
+    console.log(date, "is day", calculateDayNumber(month, day), "of the year", year);
     return calculateDayNumber(month, day);
   } else {
-    // console.log("Invalid date");
+    console.log("Invalid date");
   }
 }
 
